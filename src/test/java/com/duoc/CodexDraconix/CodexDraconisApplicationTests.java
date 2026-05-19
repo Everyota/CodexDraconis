@@ -1,10 +1,10 @@
-package com.duoc.Orbitales;
+package com.duoc.CodexDraconix;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class OrbitalesApplicationTests {
+class CodexDraconisApplicationTests {
 
 	@Test
 	void contextLoads() {

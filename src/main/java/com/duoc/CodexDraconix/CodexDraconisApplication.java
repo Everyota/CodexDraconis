@@ -1,13 +1,13 @@
-package com.duoc.Orbitales;
+package com.duoc.CodexDraconix;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OrbitalesApplication {
+public class CodexDraconisApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OrbitalesApplication.class, args);
+		SpringApplication.run(CodexDraconisApplication.class, args);
 	}
 
 }
