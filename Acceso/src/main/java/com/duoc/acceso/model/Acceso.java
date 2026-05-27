@@ -2,6 +2,7 @@ package com.duoc.acceso.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,10 @@ public class Acceso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_acceso", nullable = false)
     private Integer id;
+
+    @NotNull(message = "El id del usuario es obligatorio")
+    @Column(name = "id_usuario", nullable = false)
+    private Integer idUsuario;
 
     @Size(max = 255)
     @NotBlank(message = "La contraseña es obligatoria")

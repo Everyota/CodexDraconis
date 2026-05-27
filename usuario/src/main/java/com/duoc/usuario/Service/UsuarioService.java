@@ -17,6 +17,10 @@ public class UsuarioService {
 
     public Usuario findById(int id) {return usuarioRepository.findById(id).orElse(null);}
 
+    public Usuario findByNicknameOrCorreo(String datoUsuario) {
+        return usuarioRepository.findByNicknameOrCorreo(datoUsuario, datoUsuario).orElse(null);
+    }
+
     public Usuario create(Usuario usuario) {return usuarioRepository.save(usuario);}
 
     public Usuario update(int id, Usuario usuario) {

@@ -1,5 +1,6 @@
 package com.duoc.acceso.controller;
 
+import com.duoc.acceso.DTO.LoginDTO;
 import com.duoc.acceso.model.Acceso;
 import com.duoc.acceso.service.AccesoService;
 import jakarta.validation.Valid;
@@ -59,6 +60,16 @@ public class AccesoController {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody @Valid LoginDTO loginDTO) {
+        boolean inicioSesion = accesoService.login(loginDTO.getDatoUsuario(), loginDTO.getContrasenia());
+        if (inicioSesion) {
+            return new ResponseEntity<>("Bienvenido a la manada", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Eres un impostor", HttpStatus.UNAUTHORIZED);
         }
     }
 }

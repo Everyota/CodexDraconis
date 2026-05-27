@@ -36,6 +36,16 @@ public class UsuarioController {
         }
     }
 
+    @GetMapping("/busqueda/{datoUsuario}")
+    public ResponseEntity<Usuario> findByNicknameOrCorreo(@PathVariable String datoUsuario) {
+        Usuario usuario = usuarioService.findByNicknameOrCorreo(datoUsuario);
+        if (usuario == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(usuario, HttpStatus.OK);
+        }
+    }
+
     @PostMapping
     public ResponseEntity<Usuario> create(@RequestBody Usuario usuario) {
         return new ResponseEntity<>(usuarioService.create(usuario), HttpStatus.OK);
