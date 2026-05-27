@@ -1,0 +1,33 @@
+package com.duoc.criaturahabitat.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.Instant;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "criatura_habitat")
+public class CriaturaHabitat {
+    @EmbeddedId
+    private CriaturaHabitatId id;
+
+    @CreationTimestamp
+    @Column(name = "fecha_creacion", nullable = false)
+    private Instant fechaCreacion;
+
+    @UpdateTimestamp
+    @Column(name = "fecha_actualizacion")
+    private Instant fechaActualizacion;
+
+
+}
