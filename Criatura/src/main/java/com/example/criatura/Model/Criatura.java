@@ -41,7 +41,6 @@ public class Criatura {
     private String nombreCriatura;
 
     @NotBlank(message = "Espacio obligatorio")
-    @Lob
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 

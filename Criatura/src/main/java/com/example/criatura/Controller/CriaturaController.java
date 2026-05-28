@@ -1,5 +1,6 @@
 package com.example.criatura.Controller;
 
+import com.example.criatura.DTO.CriaturaDTO;
 import com.example.criatura.Model.Criatura;
 import com.example.criatura.Service.CriaturaService;
 import jakarta.validation.Valid;
@@ -31,6 +32,26 @@ public class CriaturaController {
     @GetMapping("/{id}")
     public ResponseEntity<Criatura> findById(@PathVariable int id) {
         Criatura criatura = criaturaService.findById(id);
+        if (criatura == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(criatura, HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/full-criatura/{id}")
+    public ResponseEntity<CriaturaDTO> findByIdFull(@PathVariable int id) {
+        CriaturaDTO criatura = criaturaService.findByIdFull(id);
+        if (criatura == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(criatura, HttpStatus.OK);
+        }
+    }
+
+    @GetMapping("/tipo-criatura/{id}")
+    public ResponseEntity<List<Criatura>> findByTipoCriatura(@PathVariable int id) {
+        List<Criatura> criatura = criaturaService.findByTipoCriatura(id);
         if (criatura == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {

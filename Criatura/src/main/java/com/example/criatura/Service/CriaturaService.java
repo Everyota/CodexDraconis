@@ -1,5 +1,10 @@
 package com.example.criatura.Service;
 
+import com.example.criatura.Client.RarezaClient;
+import com.example.criatura.Client.TipoCriaturaClient;
+import com.example.criatura.DTO.CriaturaDTO;
+import com.example.criatura.DTO.RarezaDTO;
+import com.example.criatura.DTO.TipoCriaturaDTO;
 import com.example.criatura.Model.Criatura;
 import com.example.criatura.Repository.CriaturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +17,10 @@ import java.util.List;
 public class CriaturaService {
     @Autowired
     private CriaturaRepository criaturaRepository;
+    @Autowired
+    private TipoCriaturaClient tipoCriaturaClient;
+    @Autowired
+    private RarezaClient rarezaClient;
 
     public List<Criatura> findAll() {
         return criaturaRepository.findAll();
@@ -19,6 +28,28 @@ public class CriaturaService {
 
     public Criatura findById(int id) {
         return criaturaRepository.findById(id).orElse(null);
+    }
+
+    public CriaturaDTO findByIdFull(int id) {
+        Criatura criatura = findById(id);
+        if (criatura != null) {
+            try {
+                TipoCriaturaDTO tipoCriatura = tipoCriaturaClient.getTipoCriatura(criatura.getIdTipoCriatura());
+                RarezaDTO rareza = rarezaClient.getRareza(criatura.getIdRareza());
+                CriaturaDTO criaturaDTO = new CriaturaDTO();
+                criaturaDTO.setId(criatura.getId());
+                criaturaDTO.setNombreCriatura(criatura.getNombreCriatura());
+                criaturaDTO.setDescripcion(criatura.getDescripcion());
+                criaturaDTO.setTipoCriatura(tipoCriatura);
+                criaturaDTO.setRareza(rareza);
+
+                return criaturaDTO;
+            } catch (Exception e) {
+                System.out.println("Error al obtener datos relacionados: " + e.getMessage());
+            }
+        }
+
+        return null;
     }
 
     public Criatura create(Criatura criatura) {
@@ -53,5 +84,9 @@ public class CriaturaService {
         } else {
             return false;
         }
+    }
+
+    public List<Criatura> findByTipoCriatura(int idTipoCriatura) {
+        return criaturaRepository.findByIdTipoCriatura(idTipoCriatura);
     }
 }
