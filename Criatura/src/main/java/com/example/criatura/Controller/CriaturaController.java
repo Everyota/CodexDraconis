@@ -108,4 +108,14 @@ public class CriaturaController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/idrareza/{id}")
+    public ResponseEntity<List<Criatura>> findByIdRareza(@PathVariable int idRareza) {
+        List<Criatura> criatura = criaturaService.findByIdRareza(idRareza);
+        if (criatura == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(criatura, HttpStatus.OK);
+        }
+    }
 }

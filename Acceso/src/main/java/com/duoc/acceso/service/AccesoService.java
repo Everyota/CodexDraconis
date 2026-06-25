@@ -62,4 +62,19 @@ public class AccesoService {
         }
         return false;
     }
+
+    public UsuarioDTO lolgin(int id, String contrasenia){
+        Acceso acceso = findById(id);
+        if (acceso != null) {
+            try {
+                UsuarioDTO usuario = usuarioClient.getUsuario(acceso.getIdUsuario());
+                return usuario;
+
+            } catch (Exception e) {
+                System.out.println("weko" + e.getMessage());
+            }
+        }
+
+        return null;
+    }
 }

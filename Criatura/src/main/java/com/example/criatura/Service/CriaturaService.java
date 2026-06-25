@@ -89,4 +89,8 @@ public class CriaturaService {
     public List<Criatura> findByTipoCriatura(int idTipoCriatura) {
         return criaturaRepository.findByIdTipoCriatura(idTipoCriatura);
     }
+
+    public List<Criatura> findByIdRareza(int idRareza){
+        return criaturaRepository.findByIdRareza(idRareza);
+    }
 }

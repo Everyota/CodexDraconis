@@ -9,4 +9,7 @@ import java.util.List;
 @Repository
 public interface CriaturaRepository extends JpaRepository <Criatura, Integer> {
     List<Criatura> findByIdTipoCriatura(Integer idTipoCriatura);
+
+    List<Criatura> findByIdRareza(Integer idRareza);
+
 }
