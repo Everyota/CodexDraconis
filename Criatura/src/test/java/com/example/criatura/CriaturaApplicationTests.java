@@ -34,7 +34,7 @@ class CriaturaApplicationTests {
     //saldrá nulo porque en la base de datos este está vacio xd tampoco agregué manualmente aquí
 
     @Test
-    @DisplayName("buscar criatura inexistente")
+    @DisplayName("buscar criatura inexistente por id")
     void checkCriaturaNoExistente() {
         Criatura criatura = criaturaService.findById(9999);
         log.info("buscando criatura con id no existente");
